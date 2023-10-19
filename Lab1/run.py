@@ -12,7 +12,7 @@ np.random.seed(42)
 process.init()
 train_err = []
 test_err = []
-for i in range(config.max_epoch):
+for i in range(1, config.max_epoch+1):
     if i in config.l_rates.keys():
         config.learning_rate = config.l_rates[i]
         print("Learning rate: %f" % config.learning_rate)
@@ -34,9 +34,9 @@ for i in range(config.max_epoch):
     test_err.append(error/len(config.test_in))
     if i % 100 == 0:
         print("epoch %d : %f %f" % (i, train_err[-1], test_err[-1]))
-        plt.scatter(config.test_in, 1.25*np.array(out), s=1)
-        plt.scatter(config.test_in, 1.25*config.test_out, s=1)
-        plt.show()
+        # plt.scatter(config.test_in, 2*np.array(out), s=1)
+        # plt.scatter(config.test_in, 2*config.test_out, s=1)
+        # plt.show()
 
 plt.scatter(list(range(len(train_err))), train_err, s=1)
 plt.scatter(list(range(len(test_err))), test_err, s=1)
